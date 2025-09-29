@@ -1,0 +1,12 @@
+{
+  "name": "Vue 3 + Vite",
+  "description": "基于 Vue 3 + Vite 的现代化前端项目模板",
+  "version": "1.0.0",
+  "author": "XAGI Team",
+  "features": ["Vue 3", "Composition API", "Vite", "TypeScript", "ESLint", "Prettier", "SFC"],
+  "keywords": ["vue", "vue3", "vite", "typescript", "frontend", "spa"],
+  "category": "frontend",
+  "framework": "vue",
+  "bundler": "vite",
+  "language": "typescript"
+}
