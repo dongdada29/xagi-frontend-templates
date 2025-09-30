@@ -1,0 +1,87 @@
+{
+    "name": "react-next",
+    "displayName": "React + Next.js + Tailwind CSS",
+    "description": "基于 Next.js 14 App Router、React 18、TypeScript 和 Tailwind CSS 的现代化全栈应用模板",
+    "version": "1.0.0",
+    "author": "XAGI Frontend Templates",
+    "license": "MIT",
+    "keywords": [
+        "nextjs",
+        "react",
+        "typescript",
+        "tailwindcss",
+        "app-router",
+        "fullstack",
+        "template"
+    ],
+    "features": [
+        "Next.js 14 App Router",
+        "React 18 最新特性",
+        "TypeScript 完整支持",
+        "Tailwind CSS 样式系统",
+        "无样式 UI 组件库",
+        "响应式设计",
+        "SEO 优化",
+        "性能优化",
+        "开发工具集成",
+        "代码质量保证"
+    ],
+    "techStack": {
+        "framework": "Next.js 14",
+        "ui": "React 18",
+        "language": "TypeScript",
+        "styling": "Tailwind CSS",
+        "bundler": "Turbopack",
+        "packageManager": "npm"
+    },
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "type-check": "tsc --noEmit"
+    },
+    "dependencies": {
+        "next": "^14.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "clsx": "^2.0.0",
+        "tailwind-merge": "^2.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "@typescript-eslint/eslint-plugin": "^6.0.0",
+        "@typescript-eslint/parser": "^6.0.0",
+        "autoprefixer": "^10.4.0",
+        "eslint": "^8.0.0",
+        "eslint-config-next": "^14.0.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "postcss": "^8.4.0",
+        "prettier": "^3.0.0",
+        "tailwindcss": "^3.3.0",
+        "typescript": "^5.0.0"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "placeholders": {
+        "projectName": "项目名称",
+        "description": "项目描述",
+        "author": "作者名称",
+        "version": "1.0.0"
+    },
+    "structure": {
+        "src/app": "App Router 页面和布局",
+        "src/components": "可复用组件",
+        "src/lib": "工具函数和配置",
+        "public": "静态资源"
+    },
+    "documentation": {
+        "gettingStarted": "https://nextjs.org/docs",
+        "tailwindcss": "https://tailwindcss.com/docs",
+        "typescript": "https://www.typescriptlang.org/docs"
+    }
+}

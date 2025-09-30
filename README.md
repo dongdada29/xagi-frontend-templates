@@ -22,6 +22,18 @@
   - 单文件组件 (SFC)
   - 快速热重载
 
+### React + Next.js
+- **路径**: `react-next/`
+- **描述**: 基于 Next.js 14 + React 18 + Tailwind CSS 的全栈应用模板
+- **特性**:
+  - Next.js 14 App Router
+  - React 18 最新特性
+  - TypeScript 完整支持
+  - Tailwind CSS 样式系统
+  - 无样式 UI 组件库
+  - SEO 优化
+  - 性能优化
+
 ## 使用方法
 
 这些模板通过 XAGI Frontend MCP 服务器自动下载和使用。MCP 服务器会：
