@@ -1,8 +1,64 @@
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { userApi, exampleApi, useApi } from '@/lib/services';
+
+interface User {
+  id: number;
+  username: string;
+  email: string;
+}
 
 export default function HomePage() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [userData, setUserData] = useState<User | null>(null);
+
+  // 使用自定义Hook获取数据
+  const { data: posts, loading: postsLoading, error: postsError } = useApi(
+    () => exampleApi.getList({ page: 1, pageSize: 10 })
+  );
+
+  // 登录示例
+  const handleLogin = async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const result = await userApi.login({
+        username: 'demo',
+        password: '123456'
+      });
+      console.log('登录成功:', result);
+      alert('登录成功！');
+    } catch (err: any) {
+      setError(err.message || '登录失败');
+      console.error('登录失败:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 获取用户信息
+  const handleGetUserInfo = async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const user = await userApi.getUserInfo();
+      setUserData(user);
+      console.log('用户信息:', user);
+    } catch (err: any) {
+      setError(err.message || '获取用户信息失败');
+      console.error('获取用户信息失败:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* 导航栏 */}
@@ -130,6 +186,93 @@ export default function HomePage() {
               </p>
             </Card>
           </div>
+        </div>
+
+        {/* API 调用示例 */}
+        <div className="mt-24">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+              HTTP 客户端演示
+            </h2>
+            <p className="mt-4 text-lg text-gray-600">
+              内置完整的 HTTP 客户端解决方案，支持快速接入后端接口
+            </p>
+          </div>
+          
+          <Card className="mx-auto mt-12 max-w-2xl p-6">
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-gray-900">API 调用示例</h3>
+              
+              <div className="flex gap-4">
+                <Button 
+                  onClick={handleLogin} 
+                  disabled={loading}
+                  className="flex-1"
+                >
+                  {loading ? '登录中...' : '模拟登录'}
+                </Button>
+                
+                <Button 
+                  onClick={handleGetUserInfo} 
+                  disabled={loading}
+                  variant="outline"
+                  className="flex-1"
+                >
+                  {loading ? '获取中...' : '获取用户信息'}
+                </Button>
+              </div>
+              
+              {error && (
+                <div className="rounded-lg bg-red-50 p-4 text-red-700">
+                  错误: {error}
+                </div>
+              )}
+              
+              {userData && (
+                <div className="rounded-lg bg-green-50 p-4">
+                  <h4 className="font-medium text-green-900">用户信息:</h4>
+                  <p className="text-green-700">ID: {userData.id}</p>
+                  <p className="text-green-700">用户名: {userData.username}</p>
+                  <p className="text-green-700">邮箱: {userData.email}</p>
+                </div>
+              )}
+              
+              {postsLoading && (
+                <div className="text-center text-gray-600">
+                  加载帖子列表中...
+                </div>
+              )}
+              
+              {postsError && (
+                <div className="rounded-lg bg-red-50 p-4 text-red-700">
+                  加载失败: {postsError.message}
+                </div>
+              )}
+              
+              {posts && (
+                <div className="rounded-lg bg-blue-50 p-4">
+                  <h4 className="font-medium text-blue-900">
+                    帖子列表 (共 {posts.total} 条):
+                  </h4>
+                  <ul className="mt-2 space-y-2">
+                    {posts.list.map((post: any) => (
+                      <li key={post.id} className="border-b border-blue-200 pb-2">
+                        <strong className="text-blue-900">{post.title}</strong>
+                        <p className="text-blue-700">{post.content}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              <div className="rounded-lg bg-gray-50 p-4">
+                <p className="text-sm text-gray-600">
+                  查看 <code className="bg-gray-200 px-1 rounded">src/lib/api.ts</code> 和{' '}
+                  <code className="bg-gray-200 px-1 rounded">src/lib/services.ts</code> 了解完整的 HTTP 客户端配置
+                </p>
+              </div>
+            </div>
+          </Card>
         </div>
       </main>
 
