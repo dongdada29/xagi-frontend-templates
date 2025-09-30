@@ -1,0 +1,43 @@
+{
+  "name": "xagi-frontend-templates",
+  "version": "1.0.0",
+  "description": "XAGI Frontend Templates - 现代化前端项目模板集合",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:production": "pnpm -r build:production",
+    "dev": "pnpm --parallel -r dev",
+    "lint": "pnpm -r lint",
+    "lint:fix": "pnpm -r lint:fix",
+    "type-check": "pnpm -r type-check",
+    "test": "pnpm -r test",
+    "clean": "pnpm -r clean",
+    "install:all": "pnpm install",
+    "update:deps": "pnpm -r update:deps",
+    "check:outdated": "pnpm -r check:outdated"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "prettier": "^3.0.0",
+    "eslint": "^8.55.0"
+  },
+  "packageManager": "pnpm@10.17.1",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "keywords": [
+    "monorepo",
+    "templates",
+    "react",
+    "vue",
+    "next",
+    "vite",
+    "typescript"
+  ],
+  "author": "XAGI Team",
+  "license": "MIT"
+}

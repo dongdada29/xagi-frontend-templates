@@ -1,0 +1,42 @@
+{
+  "name": "@xagi-templates/vue3-vite",
+  "version": "1.0.0",
+  "description": "Vue 3 + Vite + TypeScript 模板 - 基于 Vite 的现代化 Vue 3 开发模板",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 4000",
+    "build": "vite build",
+    "build:production": "NODE_ENV=production vite build",
+    "preview": "vite preview",
+    "preview:production": "NODE_ENV=production vite preview",
+    "type-check": "vue-tsc --noEmit",
+    "type-check:watch": "vue-tsc --noEmit --watch",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "vue": "^3.3.11",
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vue-tsc": "^1.8.25"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "vue",
+    "vite",
+    "typescript",
+    "template",
+    "starter"
+  ],
+  "author": "XAGI Team",
+  "license": "MIT"
+}

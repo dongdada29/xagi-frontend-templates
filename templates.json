@@ -1,0 +1,353 @@
+{
+  "version": "1.0.0",
+  "description": "XAGI Frontend Templates - 内置前端模板集合",
+  "updatedAt": "2025-09-30T11:37:00Z",
+  "author": "XAGI Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shareAI-lab/xagi-frontend-templates"
+  },
+  "templates": [
+    {
+      "id": "react-vite",
+      "name": "React + Vite",
+      "packageName": "@xagi-templates/react-vite",
+      "version": "1.0.0",
+      "description": "基于 React 18 + Vite + TypeScript 的现代化前端项目模板",
+      "category": "react",
+      "framework": "react",
+      "buildTool": "vite",
+      "language": "typescript",
+      "port": 3000,
+      "path": "packages/react-vite",
+      "features": [
+        "React 18 支持",
+        "TypeScript 完整支持",
+        "Vite 现代化构建工具",
+        "热重载开发服务器",
+        "ESLint + Prettier 代码规范",
+        "Axios HTTP 客户端集成",
+        "React Hooks 封装",
+        "自动 token 管理",
+        "统一的错误处理"
+      ],
+      "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "axios": "^1.6.2"
+      },
+      "devDependencies": {
+        "@types/react": "^18.2.43",
+        "@types/react-dom": "^18.2.17",
+        "@typescript-eslint/eslint-plugin": "^6.14.0",
+        "@typescript-eslint/parser": "^6.14.0",
+        "@vitejs/plugin-react": "^4.2.1",
+        "eslint": "^8.55.0",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.5",
+        "typescript": "^5.2.2",
+        "vite": "^5.0.8"
+      },
+      "scripts": {
+        "dev": "vite --port 3000",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "type-check": "tsc --noEmit"
+      },
+      "fileStructure": [
+        "src/",
+        "src/App.tsx",
+        "src/main.tsx",
+        "src/App.css",
+        "src/lib/api.ts",
+        "src/lib/services.ts",
+        "vite.config.ts",
+        "tsconfig.json",
+        "package.json"
+      ],
+      "entryPoint": "src/main.tsx",
+      "buildOutput": "dist/",
+      "env": {
+        "port": "3000",
+        "base_url": "/"
+      },
+      "minimumNodeVersion": "18.0.0",
+      "recommendedFor": [
+        "现代 React 应用开发",
+        "需要快速构建的项目",
+        "TypeScript 爱好者",
+        "单页面应用 (SPA)"
+      ],
+      "compatibility": {
+        "browsers": [
+          "Chrome >= 87",
+          "Firefox >= 78",
+          "Safari >= 14",
+          "Edge >= 88"
+        ],
+        "node": ">=18.0.0"
+      }
+    },
+    {
+      "id": "vue3-vite",
+      "name": "Vue 3 + Vite",
+      "packageName": "@xagi-templates/vue3-vite",
+      "version": "1.0.0",
+      "description": "基于 Vue 3 + Vite + TypeScript 的现代化前端项目模板",
+      "category": "vue",
+      "framework": "vue",
+      "buildTool": "vite",
+      "language": "typescript",
+      "port": 4000,
+      "path": "packages/vue3-vite",
+      "features": [
+        "Vue 3 Composition API",
+        "TypeScript 完整支持",
+        "Vite 现代化构建工具",
+        "单文件组件 (SFC)",
+        "快速热重载",
+        "Axios HTTP 客户端集成",
+        "Vue 3 Composition API 封装",
+        "自动 token 管理",
+        "统一的错误处理"
+      ],
+      "dependencies": {
+        "vue": "^3.3.11",
+        "axios": "^1.6.2"
+      },
+      "devDependencies": {
+        "@vitejs/plugin-vue": "^4.5.2",
+        "typescript": "^5.2.2",
+        "vite": "^5.0.8",
+        "vue-tsc": "^1.8.25"
+      },
+      "scripts": {
+        "dev": "vite --port 4000",
+        "build": "vite build",
+        "preview": "vite preview",
+        "type-check": "vue-tsc --noEmit"
+      },
+      "fileStructure": [
+        "src/",
+        "src/App.vue",
+        "src/main.ts",
+        "src/style.css",
+        "src/lib/api.ts",
+        "src/lib/services.ts",
+        "vite.config.ts",
+        "tsconfig.json",
+        "package.json"
+      ],
+      "entryPoint": "src/main.ts",
+      "buildOutput": "dist/",
+      "env": {
+        "port": "4000",
+        "base_url": "/"
+      },
+      "minimumNodeVersion": "18.0.0",
+      "recommendedFor": [
+        "现代 Vue 应用开发",
+        "Composition API 项目",
+        "TypeScript 爱好者",
+        "单页面应用 (SPA)"
+      ],
+      "compatibility": {
+        "browsers": [
+          "Chrome >= 87",
+          "Firefox >= 78",
+          "Safari >= 14",
+          "Edge >= 88"
+        ],
+        "node": ">=18.0.0"
+      }
+    },
+    {
+      "id": "react-next",
+      "name": "React + Next.js",
+      "packageName": "@xagi-templates/react-next",
+      "version": "1.0.0",
+      "description": "基于 Next.js 14 + React 18 + TypeScript + Tailwind CSS 的全栈应用模板",
+      "category": "react",
+      "framework": "next",
+      "buildTool": "next",
+      "language": "typescript",
+      "port": 3000,
+      "path": "packages/react-next",
+      "features": [
+        "Next.js 14 App Router",
+        "React 18 最新特性",
+        "TypeScript 完整支持",
+        "Tailwind CSS 样式系统",
+        "Radix UI 组件库",
+        "App Router 架构",
+        "SEO 优化",
+        "性能优化",
+        "Axios HTTP 客户端集成",
+        "React Hooks 封装",
+        "自动 token 管理",
+        "统一的错误处理",
+        "支持 Server Components"
+      ],
+      "dependencies": {
+        "next": "^14.2.15",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "@radix-ui/react-dialog": "^1.1.15",
+        "@radix-ui/react-dropdown-menu": "^2.1.16",
+        "@radix-ui/react-slot": "^1.2.3",
+        "@radix-ui/react-toast": "^1.2.15",
+        "@radix-ui/react-tooltip": "^1.2.8",
+        "@radix-ui/react-tabs": "^1.1.13",
+        "axios": "^1.6.2",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "lucide-react": "^0.544.0",
+        "tailwind-merge": "^3.3.1",
+        "tailwindcss-animate": "^1.0.7"
+      },
+      "devDependencies": {
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "@typescript-eslint/eslint-plugin": "^6.0.0",
+        "@typescript-eslint/parser": "^6.0.0",
+        "@vitest/coverage-v8": "^1.0.4",
+        "autoprefixer": "^10.4.21",
+        "eslint": "^8",
+        "eslint-config-next": "^14.2.15",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "jsdom": "^23.0.1",
+        "postcss": "^8.5.6",
+        "prettier": "^3.0.0",
+        "prettier-plugin-tailwindcss": "^0.6.14",
+        "tailwindcss": "^3.4.0",
+        "typescript": "^5",
+        "vitest": "^1.0.4"
+      },
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "type-check": "tsc --noEmit"
+      },
+      "fileStructure": [
+        "src/app/",
+        "src/app/layout.tsx",
+        "src/app/page.tsx",
+        "src/app/globals.css",
+        "src/components/ui/",
+        "src/lib/utils.ts",
+        "src/lib/api.ts",
+        "next.config.js",
+        "tailwind.config.js",
+        "tsconfig.json",
+        "package.json"
+      ],
+      "entryPoint": "src/app/layout.tsx",
+      "buildOutput": ".next/",
+      "env": {
+        "port": "3000",
+        "base_url": "http://localhost:3000"
+      },
+      "minimumNodeVersion": "18.0.0",
+      "recommendedFor": [
+        "全栈应用开发",
+        "需要 SEO 优化的项目",
+        "服务端渲染 (SSR)",
+        "静态站点生成 (SSG)",
+        "企业级应用"
+      ],
+      "compatibility": {
+        "browsers": [
+          "Chrome >= 87",
+          "Firefox >= 78",
+          "Safari >= 14",
+          "Edge >= 88"
+        ],
+        "node": ">=18.0.0"
+      }
+    }
+  ],
+  "commonFeatures": [
+    "TypeScript 支持",
+    "现代构建工具",
+    "热重载开发服务器",
+    "Axios HTTP 客户端",
+    "统一的错误处理",
+    "自动 token 管理",
+    "代码规范工具",
+    "生产环境优化"
+  ],
+  "requirements": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0",
+    "git": ">=2.0.0"
+  },
+  "usage": {
+    "monorepo": {
+      "enabled": true,
+      "tool": "pnpm",
+      "command": "pnpm install",
+      "devCommand": "pnpm dev",
+      "buildCommand": "pnpm build"
+    },
+    "standalone": {
+      "enabled": true,
+      "command": "npm install",
+      "devCommand": "npm run dev",
+      "buildCommand": "npm run build"
+    },
+    "variables": [
+      {
+        "name": "projectName",
+        "description": "项目名称",
+        "example": "my-awesome-project"
+      },
+      {
+        "name": "description",
+        "description": "项目描述",
+        "example": "一个基于现代前端技术的 awesome 项目"
+      },
+      {
+        "name": "author",
+        "description": "作者名称",
+        "example": "Your Name"
+      },
+      {
+        "name": "version",
+        "description": "版本号",
+        "example": "1.0.0"
+      },
+      {
+        "name": "port",
+        "description": "开发服务器端口",
+        "example": "3000"
+      }
+    ]
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-09-30",
+      "changes": [
+        "初始版本发布",
+        "支持 React + Vite 模板",
+        "支持 Vue 3 + Vite 模板",
+        "支持 React + Next.js 模板",
+        "采用 pnpm workspace monorepo 管理",
+        "统一的 HTTP 客户端解决方案",
+        "完整的 TypeScript 支持"
+      ]
+    }
+  ],
+  "support": {
+    "documentation": "./README.md",
+    "monorepoGuide": "./MONOREPO.md",
+    "issues": "https://github.com/shareAI-lab/xagi-frontend-templates/issues",
+    "contact": "xagi-team@example.com"
+  }
+}

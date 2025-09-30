@@ -1,17 +1,61 @@
 # XAGI Frontend Templates
 
-这个仓库包含了 XAGI Frontend MCP 服务器使用的各种前端项目模板。
+这个仓库包含了 XAGI Frontend MCP 服务器使用的各种前端项目模板，采用 monorepo 架构统一管理。
 
-## 可用模板
+## 🏗️ 项目架构
+
+本项目使用 **pnpm workspace** 管理，采用现代化的 monorepo 架构：
+
+```
+xagi-frontend-templates/
+├── packages/                    # 模板包
+│   ├── react-vite/             # React + Vite + TypeScript
+│   ├── vue3-vite/              # Vue 3 + Vite + TypeScript  
+│   └── react-next/             # React + Next.js + TypeScript + Tailwind CSS
+├── scripts/                     # 管理脚本
+├── package.json                # 根包配置
+└── pnpm-workspace.yaml         # workspace 配置
+```
+
+## 🚀 快速开始
+
+### 环境要求
+
+- Node.js >= 18.0.0
+- pnpm >= 8.0.0
+
+### 安装和运行
+
+```bash
+# 克隆项目
+git clone <repository-url>
+cd xagi-frontend-templates
+
+# 安装所有依赖
+pnpm install
+
+# 启动所有开发服务器
+pnpm dev
+
+# 构建所有模板
+pnpm build
+
+# 运行测试
+node scripts/test-all.js
+```
+
+## 📦 可用模板
 
 ### React + Vite
-- **路径**: `react-vite/`
-- **描述**: 基于 React 18 + Vite 的现代化前端项目模板
+- **包名**: `@xagi-templates/react-vite`
+- **路径**: `packages/react-vite/`
+- **端口**: 3000
 - **特性**:
-  - TypeScript 支持
+  - React 18 + TypeScript + Vite
+  - 现代化构建工具链
   - 热重载开发服务器
-  - 现代化的构建工具链
-  - 响应式设计
+  - ESLint + Prettier 代码规范
+  - Axios HTTP 客户端集成
   - **内置 HTTP 客户端解决方案**
   - 基于 Axios 的统一请求管理
   - React Hooks 封装
@@ -19,13 +63,15 @@
   - 统一的错误处理
 
 ### Vue3 + Vite
-- **路径**: `vue3-vite/`
-- **描述**: 基于 Vue 3 + Vite 的现代化前端项目模板
+- **包名**: `@xagi-templates/vue3-vite`
+- **路径**: `packages/vue3-vite/`
+- **端口**: 4000
 - **特性**:
+  - Vue 3 + TypeScript + Vite
   - Composition API
-  - TypeScript 支持
   - 单文件组件 (SFC)
   - 快速热重载
+  - Axios HTTP 客户端集成
   - **内置 HTTP 客户端解决方案**
   - 基于 Axios 的统一请求管理
   - Vue 3 Composition API 封装
@@ -33,16 +79,15 @@
   - 统一的错误处理
 
 ### React + Next.js
-- **路径**: `react-next/`
-- **描述**: 基于 Next.js 14 + React 18 + Tailwind CSS 的全栈应用模板
+- **包名**: `@xagi-templates/react-next`
+- **路径**: `packages/react-next/`
+- **端口**: 3000
 - **特性**:
-  - Next.js 14 App Router
-  - React 18 最新特性
-  - TypeScript 完整支持
+  - Next.js 14 + React 18 + TypeScript
   - Tailwind CSS 样式系统
-  - 无样式 UI 组件库
-  - SEO 优化
-  - 性能优化
+  - Radix UI 组件库
+  - App Router 架构
+  - SEO 优化和性能优化
   - **内置 HTTP 客户端解决方案**
   - 基于 Axios 的统一请求管理
   - React Hooks 封装
@@ -50,115 +95,79 @@
   - 统一的错误处理
   - 支持 Server Components
 
-## 使用方法
+## 🛠️ 开发命令
 
-这些模板通过 XAGI Frontend MCP 服务器自动下载和使用。MCP 服务器会：
+### 根级别命令
 
-1. 从 GitHub 下载最新的模板文件
-2. 解压到指定目录
-3. 替换模板中的占位符变量
-4. 自动安装依赖
-
-## 模板变量
-
-模板支持以下占位符变量（格式：`${{变量名}}`）：
-
-- `{{projectName}}` - 项目名称
-- `{{description}}` - 项目描述
-- `{{author}}` - 作者名称
-- `{{version}}` - 版本号
-
-## HTTP 客户端使用说明
-
-所有模板都内置了完整的 HTTP 客户端解决方案，支持快速接入后端 API：
-
-### 核心特性
-- **基于 Axios**: 统一的 HTTP 客户端
-- **类型安全**: 完整的 TypeScript 支持
-- **错误处理**: 统一的错误处理机制
-- **拦截器**: 请求/响应拦截器
-- **认证**: 自动 token 管理
-- **框架适配**: 针对不同框架的优化封装
-
-### 文件结构
-```
-src/lib/
-├── api.ts          # HTTP 客户端核心配置
-└── services.ts     # API 接口定义和封装
+```bash
+pnpm dev                # 启动所有开发服务器
+pnpm build              # 构建所有模板
+pnpm build:production   # 生产环境构建
+pnpm lint               # 代码检查
+pnpm lint:fix           # 自动修复
+pnpm type-check         # 类型检查
+pnpm test               # 运行测试
+pnpm clean              # 清理构建产物
 ```
 
-### 使用示例
+### 单独开发模板
 
-#### React 模板
-```typescript
-import { userApi, useApi } from './lib/services';
+```bash
+# React Vite
+cd packages/react-vite
+pnpm dev
 
-// 使用自定义 Hook
-const { data: userInfo, loading, error } = useApi(() => userApi.getUserInfo());
+# Vue3 Vite
+cd packages/vue3-vite
+pnpm dev
 
-// 直接调用
-const handleLogin = async () => {
-  try {
-    const result = await userApi.login({ username: 'demo', password: '123456' });
-    console.log('登录成功:', result);
-  } catch (error) {
-    console.error('登录失败:', error);
-  }
-};
+# React Next.js
+cd packages/react-next
+pnpm dev
 ```
 
-#### Vue 3 模板
-```typescript
-import { userApi, useApi } from './lib/services';
+## 📚 详细文档
 
-// 使用 Composition API Hook
-const { data, loading, error } = useApi(() => userApi.getUserInfo(), true);
+- [Monorepo 管理指南](./MONOREPO.md) - 详细的项目架构和使用说明
+- [模板配置文件](./templates.json) - 完整的模板信息和版本配置
 
-// 直接调用
-const handleLogin = async () => {
-  try {
-    const result = await userApi.login({ username: 'demo', password: '123456' });
-    console.log('登录成功:', result);
-  } catch (error) {
-    console.error('登录失败:', error);
-  }
-};
+## 🔧 模板信息查询
+
+```bash
+# 查看所有模板信息
+node scripts/list-templates.js
+
+# 直接查看模板配置
+cat templates.json
 ```
 
-#### Next.js 模板
-```typescript
-import { userApi, useApi, handleApiResponse } from './lib/services';
+## 🔧 配置特性
 
-// 客户端组件使用
-const { data: userInfo, loading, error } = useApi(() => userApi.getUserInfo());
+### 统一配置
+- Prettier 代码格式化
+- TypeScript 类型检查
+- ESLint 代码规范
+- 统一的构建和测试流程
 
-// 服务端组件使用
-export default async function ServerComponent() {
-  const result = await handleApiResponse(userApi.getUserInfo());
-  
-  if (!result.success) {
-    return <div>加载失败: {result.error}</div>;
-  }
-  
-  return <div>用户信息: {result.data.username}</div>;
-}
-```
+### 依赖管理
+- pnpm workspace 统一管理
+- 共享依赖自动去重
+- 独立的包版本控制
 
-### API 配置
-- **基础 URL**: 默认 `/api`，可在 `api.ts` 中修改
-- **超时时间**: 默认 10 秒
-- **认证方式**: Bearer Token（从 localStorage 自动获取）
-- **响应格式**: 统一的 `{ code, data, message }` 格式
+### 开发体验
+- 并行开发服务器
+- 热重载支持
+- 统一的命令接口
+- 自动化测试和构建
 
-## 添加新模板
+## 📝 添加新模板
 
-要添加新模板：
+1. 在 `packages/` 目录创建新模板
+2. 初始化 `package.json` 和项目结构
+3. 配置构建和开发脚本
+4. 更新文档和测试脚本
+5. 提交 PR 进行审核
 
-1. 在根目录创建新的模板文件夹
-2. 添加 `meta.json` 文件描述模板信息
-3. 确保 HTTP 客户端解决方案包含在模板中
-4. 提交到仓库
-
-## 许可证
+## 📄 许可证
 
 MIT License
