@@ -10,28 +10,29 @@
     "build:production": "NODE_ENV=production vite build",
     "preview": "vite preview",
     "preview:production": "NODE_ENV=production vite preview",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "type-check": "tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch",
     "clean": "rm -rf dist",
-    "prebuild": "npm run clean",
+    "prebuild": "pnpm run clean",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "axios": "^1.6.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "axios": "^1.6.2"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
-    "@typescript-eslint/eslint-plugin": "^6.14.0",
-    "@typescript-eslint/parser": "^6.14.0",
+    "@typescript-eslint/eslint-plugin": "6.21.0",
+    "@typescript-eslint/parser": "6.21.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.55.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint": "8",
+    "eslint-plugin-react": "7",
+    "eslint-plugin-react-hooks": "4.6.2",
     "eslint-plugin-react-refresh": "^0.4.5",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"

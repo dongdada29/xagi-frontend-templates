@@ -6,7 +6,7 @@
 - 语言: TypeScript
 - 样式: Tailwind CSS
 - HTTP客户端: Axios
-- 包管理: npm/yarn/pnpm
+- 包管理: pnpm (强制要求)
 - 渲染: Server Components (默认) + Client Components
 
 ## 代码规范
@@ -145,3 +145,11 @@ ci: CI/CD相关
 - 保持代码风格一致
 - 使用TypeScript提升代码质量
 - 实现良好的错误处理
+
+## 包管理规则
+1. 必须使用 pnpm 作为包管理器
+2. 使用 pnpm workspace 协议引用内部依赖
+3. 依赖安装: `pnpm install`
+4. 开发服务器: `pnpm dev`
+5. 构建: `pnpm build`
+6. 使用 monorepo 模式管理项目依赖

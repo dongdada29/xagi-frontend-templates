@@ -31,7 +31,7 @@ templates.commonFeatures.forEach(feature => {
 
 console.log('\n📋 使用方法:');
 console.log('   Monorepo 模式: pnpm install && pnpm dev');
-console.log('   单独使用: cd packages/<template-name> && npm install && npm run dev');
+console.log('   单独使用: cd packages/<template-name> && pnpm install && pnpm dev');
 
 console.log('\n📚 更多信息:');
 console.log(`   文档: ${templates.support.documentation}`);

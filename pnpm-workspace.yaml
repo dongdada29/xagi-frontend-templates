@@ -1,2 +1,17 @@
 packages:
   - 'packages/*'
+
+# 保存包的依赖关系以确保一致性
+save-workspace-protocol: true
+
+# 启用严格模式，确保所有依赖都在workspace中解决
+strict-workspace-dependencies: true
+
+# 优化依赖提升策略
+package-import-method: auto
+
+# 启用自动安装peer dependencies
+auto-install-peers: true
+
+# 忽略构建脚本的警告
+ignore-build-scripts: true

@@ -30,7 +30,7 @@
         "language": "TypeScript",
         "styling": "Tailwind CSS",
         "bundler": "Turbopack",
-        "packageManager": "npm"
+        "packageManager": "pnpm"
     },
     "scripts": {
         "dev": "next dev",
@@ -44,7 +44,7 @@
         "type-check": "tsc --noEmit",
         "type-check:watch": "tsc --noEmit --watch",
         "clean": "rm -rf .next out",
-        "prebuild": "npm run clean",
+        "prebuild": "pnpm run clean",
         "format": "prettier --write .",
         "format:check": "prettier --check ."
     },

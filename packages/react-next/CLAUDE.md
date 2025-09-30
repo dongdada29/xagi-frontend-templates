@@ -180,5 +180,5 @@ claude test src/components/Button.tsx
 1. **Import Errors**: Check file paths and exports
 2. **Type Errors**: Verify TypeScript interfaces
 3. **Styling Issues**: Confirm Tailwind CSS classes
-4. **Build Errors**: Run `npm run clean` first
+4. **Build Errors**: Run `pnpm clean` first
 5. **Test Failures**: Check test configuration

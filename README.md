@@ -126,6 +126,31 @@ cd packages/react-next
 pnpm dev
 ```
 
+### 依赖管理命令
+
+```bash
+# 安装依赖
+pnpm install                    # 安装所有workspace依赖
+pnpm add <package>              # 添加依赖到根项目
+pnpm add <package> -w <workspace> # 添加依赖到指定workspace
+pnpm remove <package>           # 移除依赖
+
+# 更新依赖
+pnpm update                     # 更新所有依赖
+pnpm update <package>           # 更新指定依赖
+pnpm outdated                   # 检查过时的依赖
+pnpm audit                      # 安全审计
+
+# 清理依赖
+pnpm clean                      # 清理所有构建产物
+pnpm prune                      # 清理未使用的依赖
+pnpm store prune               # 清理store中未使用的包
+
+# Workspace特定命令
+pnpm --filter <package> <command> # 在特定workspace中运行命令
+pnpm --recursive               # 在所有workspace中运行命令
+```
+
 ## 📚 详细文档
 
 - [Monorepo 管理指南](./MONOREPO.md) - 详细的项目架构和使用说明
@@ -150,15 +175,20 @@ cat templates.json
 - 统一的构建和测试流程
 
 ### 依赖管理
-- pnpm workspace 统一管理
-- 共享依赖自动去重
-- 独立的包版本控制
+- **pnpm workspace** 统一管理所有模板包
+- 共享依赖自动去重和优化
+- 独立的包版本控制和隔离
+- **pnpm-lock.yaml** 确保依赖一致性
+- 严格workspace依赖管理
+- 自动peer依赖安装
 
 ### 开发体验
-- 并行开发服务器
-- 热重载支持
-- 统一的命令接口
-- 自动化测试和构建
+- 并行开发服务器启动
+- 热重载和快速构建支持
+- 统一的命令接口和脚本
+- 自动化测试和构建流程
+- 高效的磁盘空间利用
+- 优化的依赖提升策略
 
 ## 📝 添加新模板
 

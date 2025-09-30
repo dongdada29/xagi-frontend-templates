@@ -104,7 +104,7 @@ test_template() {
     
     # 安装依赖
     log_info "安装依赖..."
-    if npm install; then
+    if pnpm install; then
         log_success "依赖安装成功"
     else
         log_error "依赖安装失败"
@@ -195,13 +195,13 @@ main() {
     
     # 测试所有模板
     log_info "开始测试 React Next.js 模板..."
-    test_template "React Next.js" "react-next" "npm run dev" "npm run build" 40
+    test_template "React Next.js" "react-next" "pnpm dev" "pnpm build" 40
     
     log_info "开始测试 React Vite 模板..."
-    test_template "React Vite" "react-vite" "npm run dev" "npm run build" 30
+    test_template "React Vite" "react-vite" "pnpm dev" "pnpm build" 30
     
     log_info "开始测试 Vue3 Vite 模板..."
-    test_template "Vue3 Vite" "vue3-vite" "npm run dev" "npm run build" 30
+    test_template "Vue3 Vite" "vue3-vite" "pnpm dev" "pnpm build" 30
     
     # 还原配置
     restore_configs

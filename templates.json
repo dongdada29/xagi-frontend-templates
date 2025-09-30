@@ -297,9 +297,9 @@
     },
     "standalone": {
       "enabled": true,
-      "command": "npm install",
-      "devCommand": "npm run dev",
-      "buildCommand": "npm run build"
+      "command": "pnpm install",
+      "devCommand": "pnpm dev",
+      "buildCommand": "pnpm build"
     },
     "variables": [
       {

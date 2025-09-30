@@ -13,7 +13,7 @@
     "type-check": "vue-tsc --noEmit",
     "type-check:watch": "vue-tsc --noEmit --watch",
     "clean": "rm -rf dist",
-    "prebuild": "npm run clean",
+    "prebuild": "pnpm run clean",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

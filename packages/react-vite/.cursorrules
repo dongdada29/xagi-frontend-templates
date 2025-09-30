@@ -5,7 +5,7 @@
 - 语言: TypeScript
 - 样式: Tailwind CSS
 - HTTP客户端: Axios
-- 包管理: npm/yarn/pnpm
+- 包管理: pnpm (强制要求)
 
 ## 代码规范
 1. 使用TypeScript严格模式
@@ -74,6 +74,13 @@ src/
 2. API测试使用Jest + MSW
 3. 保持测试覆盖率
 4. 测试文件命名规范：*.test.tsx
+
+## 包管理规则
+1. 必须使用 pnpm 作为包管理器
+2. 使用 pnpm workspace 协议引用内部依赖
+3. 依赖安装: `pnpm install`
+4. 开发服务器: `pnpm dev`
+5. 构建: `pnpm build`
 
 ## Git提交规则
 ```

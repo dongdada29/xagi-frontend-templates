@@ -15,11 +15,7 @@ packages.forEach((pkg, index) => {
   console.log(`[${index + 1}/${packages.length}] 测试 ${pkg.name} (${pkg.path})...`);
   
   try {
-    // 安装依赖
-    console.log('  📦 安装依赖...');
-    execSync(`cd ${pkg.path} && pnpm install`, { stdio: 'inherit' });
-    
-    // 测试构建
+    // 由于已经使用workspace管理，只需要测试构建
     console.log('  🔨 测试构建...');
     execSync(`cd ${pkg.path} && pnpm build`, { stdio: 'inherit' });
     

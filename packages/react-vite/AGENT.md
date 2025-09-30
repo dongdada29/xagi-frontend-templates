@@ -9,7 +9,7 @@
 - **语言**: TypeScript
 - **样式**: Tailwind CSS
 - **HTTP客户端**: Axios
-- **包管理**: npm/yarn/pnpm
+- **包管理**: pnpm (强制要求)
 
 ## 项目结构
 ```
@@ -27,11 +27,18 @@ src/
 
 ## 开发命令
 ```bash
-npm run dev          # 启动开发服务器
-npm run build        # 构建生产版本
-npm run preview      # 预览生产版本
-npm run lint         # 运行ESLint检查
+pnpm run dev          # 启动开发服务器
+pnpm run build        # 构建生产版本
+pnpm run preview      # 预览生产版本
+pnpm run lint         # 运行ESLint检查
 ```
+
+## 包管理要求
+- **必须使用 pnpm** 作为包管理器
+- **禁止使用 npm 或 yarn** 进行依赖管理
+- **安装依赖**: `pnpm install`
+- **开发服务器**: `pnpm dev`
+- **构建**: `pnpm build`
 
 ## 代码规范
 - 使用 TypeScript 严格模式

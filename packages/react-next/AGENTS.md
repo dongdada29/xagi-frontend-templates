@@ -40,10 +40,10 @@ This template is optimized for AI-powered development with support for Claude, C
 4. **State Management**: Implement TanStack Query patterns
 
 ### For Human Developers
-1. **Setup**: `npm install`
-2. **Development**: `npm run dev`
-3. **Testing**: `npm test`
-4. **Build**: `npm run build`
+1. **Setup**: `pnpm install`
+2. **Development**: `pnpm dev`
+3. **Testing**: `pnpm test`
+4. **Build**: `pnpm build`
 
 ## Project Structure
 
@@ -102,7 +102,7 @@ Create a Next.js page using App Router. Include proper layout, metadata, and fol
 ### Common Issues
 1. **TypeScript Errors**: Check types in `src/lib/`
 2. **Styling Issues**: Verify Tailwind CSS configuration
-3. **Build Errors**: Run `npm run clean` before building
+3. **Build Errors**: Run `pnpm clean` before building
 4. **Test Failures**: Check test configuration in `vitest.config.ts`
 
 ### AI Agent Compatibility
