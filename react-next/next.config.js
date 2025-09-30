@@ -6,12 +6,7 @@ const nextConfig = {
   // 启用 SWC 最小化（默认启用）
   swcMinify: true,
 
-  // 实验性功能
-  experimental: {
-    // 启用 App Router
-    appDir: true,
-  },
-
+  
   // 图片优化配置
   images: {
     // 允许的图片域名

@@ -73,25 +73,25 @@ export function useApi<T>(
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      
-      try {
-        const result = await apiCall();
-        setData(result);
-      } catch (err) {
-        setError(err as Error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const result = await apiCall();
+      setData(result);
+    } catch (err) {
+      setError(err as Error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, deps);
 
-  return { data, loading, error, refetch: () => fetchData() };
+  return { data, loading, error, refetch: fetchData };
 }
 
 // 使用示例：

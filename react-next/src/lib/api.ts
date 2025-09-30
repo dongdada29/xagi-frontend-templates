@@ -94,19 +94,13 @@ class ApiClient {
   }
 }
 
-// 创建默认实例
-export const apiClient = new ApiClient();
-
-// 类型定义
-export type { ApiResponse, ApiError };
-
 // 便捷方法
 export const api = {
-  get: <T>(url: string, config?: AxiosRequestConfig) => apiClient.get<T>(url, config),
-  post: <T>(url: string, data?: any, config?: AxiosRequestConfig) => apiClient.post<T>(url, data, config),
-  put: <T>(url: string, data?: any, config?: AxiosRequestConfig) => apiClient.put<T>(url, data, config),
-  delete: <T>(url: string, config?: AxiosRequestConfig) => apiClient.delete<T>(url, config),
-  patch: <T>(url: string, data?: any, config?: AxiosRequestConfig) => apiClient.patch<T>(url, data, config),
+  get: <T>(url: string, config?: AxiosRequestConfig) => new ApiClient().get<T>(url, config),
+  post: <T>(url: string, data?: any, config?: AxiosRequestConfig) => new ApiClient().post<T>(url, data, config),
+  put: <T>(url: string, data?: any, config?: AxiosRequestConfig) => new ApiClient().put<T>(url, data, config),
+  delete: <T>(url: string, config?: AxiosRequestConfig) => new ApiClient().delete<T>(url, config),
+  patch: <T>(url: string, data?: any, config?: AxiosRequestConfig) => new ApiClient().patch<T>(url, data, config),
 };
 
 export default ApiClient;

@@ -2,15 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 基础样式重置和自定义样式 */
 @layer base {
-    * {
-        @apply border-border;
-    }
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
 
-    body {
-        @apply bg-background text-foreground;
-    }
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply bg-white text-gray-900;
+  }
 
     /* 自定义滚动条样式 */
     ::-webkit-scrollbar {
@@ -31,12 +75,12 @@
 
     /* 选择文本样式 */
     ::selection {
-        @apply bg-primary-100 text-primary-900;
+        @apply bg-blue-100 text-blue-900;
     }
 
     /* 焦点样式 */
     :focus-visible {
-        @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+        @apply outline-none ring-2 ring-blue-500 ring-offset-2;
     }
 }
 
@@ -50,7 +94,7 @@
 
     /* 按钮变体样式 */
     .btn-primary {
-        @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+        @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
     }
 
     .btn-secondary {
@@ -58,7 +102,7 @@
     }
 
     .btn-outline {
-        @apply border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-primary-500;
+        @apply border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-blue-500;
     }
 
     /* 卡片样式 */
@@ -76,7 +120,7 @@
     }
 
     .input-focus {
-        @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+        @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
     }
 
     /* 文本样式 */
@@ -85,7 +129,7 @@
     }
 
     .text-gradient {
-        @apply bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent;
+        @apply bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent;
     }
 
     /* 动画样式 */

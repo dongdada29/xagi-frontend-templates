@@ -4,60 +4,14 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { userApi, exampleApi, useApi } from '@/lib/services';
-
-interface User {
-  id: number;
-  username: string;
-  email: string;
-}
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { MoreHorizontal, ExternalLink, Github, Settings } from 'lucide-react';
 
 export default function HomePage() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [userData, setUserData] = useState<User | null>(null);
-
-  // 使用自定义Hook获取数据
-  const { data: posts, loading: postsLoading, error: postsError } = useApi(
-    () => exampleApi.getList({ page: 1, pageSize: 10 })
-  );
-
-  // 登录示例
-  const handleLogin = async () => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      const result = await userApi.login({
-        username: 'demo',
-        password: '123456'
-      });
-      console.log('登录成功:', result);
-      alert('登录成功！');
-    } catch (err: any) {
-      setError(err.message || '登录失败');
-      console.error('登录失败:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // 获取用户信息
-  const handleGetUserInfo = async () => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      const user = await userApi.getUserInfo();
-      setUserData(user);
-      console.log('用户信息:', user);
-    } catch (err: any) {
-      setError(err.message || '获取用户信息失败');
-      console.error('获取用户信息失败:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -67,16 +21,12 @@ export default function HomePage() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <Link href="/" className="text-xl font-bold text-gray-900">
-                {{projectName}}
+                Next.js Template
               </Link>
             </div>
             <div className="flex items-center space-x-4">
-              <Link href="/about">
-                <Button variant="ghost">关于</Button>
-              </Link>
-              <Link href="/contact">
-                <Button>联系我们</Button>
-              </Link>
+              <Button variant="ghost">关于</Button>
+              <Button>联系我们</Button>
             </div>
           </div>
         </div>
@@ -87,11 +37,10 @@ export default function HomePage() {
         {/* 英雄区域 */}
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            欢迎使用{' '}
-            <span className="text-primary-600">{{projectName}}</span>
+            欢迎使用 Next.js 模板
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            {{description}}
+            基于 Next.js 14 和 Tailwind CSS 构建的现代化应用
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Button size="lg" className="px-8">
@@ -115,9 +64,9 @@ export default function HomePage() {
           </div>
           <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <Card className="p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
                 <svg
-                  className="h-6 w-6 text-primary-600"
+                  className="h-6 w-6 text-blue-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
@@ -139,9 +88,9 @@ export default function HomePage() {
             </Card>
 
             <Card className="p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
                 <svg
-                  className="h-6 w-6 text-primary-600"
+                  className="h-6 w-6 text-blue-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
@@ -163,9 +112,9 @@ export default function HomePage() {
             </Card>
 
             <Card className="p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
                 <svg
-                  className="h-6 w-6 text-primary-600"
+                  className="h-6 w-6 text-blue-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
@@ -188,87 +137,111 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* API 调用示例 */}
+        {/* 组件演示 */}
         <div className="mt-24">
           <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-              HTTP 客户端演示
+              组件演示
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              内置完整的 HTTP 客户端解决方案，支持快速接入后端接口
+              内置 Radix UI 组件库，提供丰富的交互组件
             </p>
           </div>
           
           <Card className="mx-auto mt-12 max-w-2xl p-6">
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900">API 调用示例</h3>
+              <h3 className="text-lg font-semibold text-gray-900">组件演示</h3>
               
-              <div className="flex gap-4">
-                <Button 
-                  onClick={handleLogin} 
-                  disabled={loading}
-                  className="flex-1"
-                >
-                  {loading ? '登录中...' : '模拟登录'}
-                </Button>
-                
-                <Button 
-                  onClick={handleGetUserInfo} 
-                  disabled={loading}
-                  variant="outline"
-                  className="flex-1"
-                >
-                  {loading ? '获取中...' : '获取用户信息'}
-                </Button>
+              {/* Radix UI 组件演示 */}
+              <div className="mt-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-sm font-medium">Radix UI 组件演示</h4>
+                  
+                  {/* Dropdown Menu */}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="h-8 w-8 p-0">
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem>查看文档</DropdownMenuItem>
+                      <DropdownMenuItem>复制代码</DropdownMenuItem>
+                      <DropdownMenuItem>自定义样式</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+
+                {/* Tabs */}
+                <Tabs defaultValue="components" className="w-full">
+                  <TabsList className="grid w-full grid-cols-3">
+                    <TabsTrigger value="components">组件</TabsTrigger>
+                    <TabsTrigger value="api">API</TabsTrigger>
+                    <TabsTrigger value="settings">设置</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="components" className="space-y-4">
+                    <div className="flex flex-wrap gap-2">
+                      <Button size="sm">默认</Button>
+                      <Button variant="secondary" size="sm">次要</Button>
+                      <Button variant="destructive" size="sm">危险</Button>
+                      <Button variant="outline" size="sm">边框</Button>
+                      <Button variant="ghost" size="sm">幽灵</Button>
+                      <Button variant="link" size="sm">链接</Button>
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="api" className="space-y-4">
+                    <p className="text-sm text-gray-600">
+                      查看 API 调用结果和响应数据
+                    </p>
+                  </TabsContent>
+                  <TabsContent value="settings" className="space-y-4">
+                    <p className="text-sm text-gray-600">
+                      配置项目设置和偏好选项
+                    </p>
+                  </TabsContent>
+                </Tabs>
+
+                {/* Dialog */}
+                <div className="flex gap-2">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm">打开对话框</Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>组件库配置</DialogTitle>
+                        <DialogDescription>
+                          配置 Radix UI 组件的默认样式和行为
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="grid gap-4 py-4">
+                        <p className="text-sm text-gray-600">
+                          这里可以添加配置选项，如主题、颜色、尺寸等。
+                        </p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+
+                  {/* Tooltip */}
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button variant="outline" size="sm">
+                          <Settings className="h-4 w-4 mr-2" />
+                          设置
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>打开项目设置面板</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
               </div>
-              
-              {error && (
-                <div className="rounded-lg bg-red-50 p-4 text-red-700">
-                  错误: {error}
-                </div>
-              )}
-              
-              {userData && (
-                <div className="rounded-lg bg-green-50 p-4">
-                  <h4 className="font-medium text-green-900">用户信息:</h4>
-                  <p className="text-green-700">ID: {userData.id}</p>
-                  <p className="text-green-700">用户名: {userData.username}</p>
-                  <p className="text-green-700">邮箱: {userData.email}</p>
-                </div>
-              )}
-              
-              {postsLoading && (
-                <div className="text-center text-gray-600">
-                  加载帖子列表中...
-                </div>
-              )}
-              
-              {postsError && (
-                <div className="rounded-lg bg-red-50 p-4 text-red-700">
-                  加载失败: {postsError.message}
-                </div>
-              )}
-              
-              {posts && (
-                <div className="rounded-lg bg-blue-50 p-4">
-                  <h4 className="font-medium text-blue-900">
-                    帖子列表 (共 {posts.total} 条):
-                  </h4>
-                  <ul className="mt-2 space-y-2">
-                    {posts.list.map((post: any) => (
-                      <li key={post.id} className="border-b border-blue-200 pb-2">
-                        <strong className="text-blue-900">{post.title}</strong>
-                        <p className="text-blue-700">{post.content}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
               
               <div className="rounded-lg bg-gray-50 p-4">
                 <p className="text-sm text-gray-600">
-                  查看 <code className="bg-gray-200 px-1 rounded">src/lib/api.ts</code> 和{' '}
-                  <code className="bg-gray-200 px-1 rounded">src/lib/services.ts</code> 了解完整的 HTTP 客户端配置
+                  查看 <code className="bg-gray-200 px-1 rounded">src/components/ui/</code> 目录了解可用的组件
                 </p>
               </div>
             </div>
@@ -280,7 +253,7 @@ export default function HomePage() {
       <footer className="border-t bg-white">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="text-center text-sm text-gray-500">
-            <p>&copy; 2024 {{projectName}}. 保留所有权利。</p>
+            <p>&copy; 2024 Next.js Template. 保留所有权利。</p>
           </div>
         </div>
       </footer>
