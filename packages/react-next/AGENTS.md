@@ -14,7 +14,9 @@ This template is optimized for AI-powered development with support for Claude, C
 ### Key Features for AI Development
 
 #### 1. Smart Component Generation
-- Radix UI + Tailwind CSS component patterns
+- Complete Radix UI component library (27 components)
+- React Hook Form + Zod integration
+- Tailwind CSS styling system
 - Consistent TypeScript typing
 - Accessibility-first design
 - Responsive design patterns
@@ -35,9 +37,10 @@ This template is optimized for AI-powered development with support for Claude, C
 
 ### For AI Agents
 1. **Component Generation**: Use `src/components/ui/` patterns
-2. **Page Creation**: Follow App Router structure in `src/app/`
-3. **API Integration**: Use `src/lib/api.ts` for HTTP client
-4. **State Management**: Implement TanStack Query patterns
+2. **Form Development**: Use React Hook Form + Zod patterns
+3. **Page Creation**: Follow App Router structure in `src/app/`
+4. **API Integration**: Use `src/lib/api.ts` for HTTP client
+5. **State Management**: Implement TanStack Query patterns
 
 ### For Human Developers
 1. **Setup**: `pnpm install`
@@ -107,3 +110,107 @@ Create a Next.js page using App Router. Include proper layout, metadata, and fol
 
 ### AI Agent Compatibility
 This template is designed to work seamlessly with major AI coding assistants and provides optimal patterns for AI-generated code.
+
+## Form Development
+
+### React Hook Form + Zod Integration
+This template includes a complete form solution using React Hook Form for state management and Zod for schema validation.
+
+#### Form Components
+- **Form**: Main form wrapper with React Hook Form context
+- **FormField**: Field wrapper with validation
+- **FormItem**: Container for form elements
+- **FormLabel**: Accessible form labels
+- **FormControl**: Input control wrapper
+- **FormDescription**: Help text for form fields
+- **FormMessage**: Error message display
+
+#### Form Development Patterns
+```typescript
+// Define Zod schema
+const formSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+})
+
+// Use form components
+<Form {...form}>
+  <form onSubmit={form.handleSubmit(onSubmit)}>
+    <FormField
+      control={form.control}
+      name="email"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Email</FormLabel>
+          <FormControl>
+            <Input {...field} />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  </form>
+</Form>
+```
+
+### Form Best Practices
+- Use Zod schemas for validation
+- Implement proper error handling
+- Integrate with Radix UI components
+- Follow accessibility guidelines
+- Use TypeScript for type safety
+
+## Available Components
+
+### Complete Radix UI Component Library (27 Components)
+
+#### Layout & Navigation
+- **Accordion**: Collapsible content sections
+- **Collapsible**: Show/hide content areas
+- **Navigation Menu**: Complex navigation structures
+- **Menubar**: Application menu bars
+- **Tabs**: Tabbed content organization
+- **Separator**: Visual content dividers
+
+#### Data Display
+- **Avatar**: User profile images
+- **Card**: Content containers
+- **Progress**: Progress indicators
+- **Scroll Area**: Custom scrollable areas
+- **Aspect Ratio**: Maintain aspect ratios
+
+#### Form Controls
+- **Button**: Interactive buttons with variants
+- **Checkbox**: Boolean input controls
+- **Input**: Text input fields
+- **Label**: Form field labels
+- **Radio Group**: Single-choice selections
+- **Select**: Dropdown selections
+- **Slider**: Range input controls
+- **Switch**: Toggle controls
+- **Textarea**: Multi-line text input
+- **Toggle**: Toggle buttons
+- **Toggle Group**: Grouped toggle buttons
+
+#### Overlays & Dialogs
+- **Alert Dialog**: Confirmation dialogs
+- **Dialog**: Modal dialogs
+- **Dropdown Menu**: Context menus
+- **Popover**: Floating content panels
+- **Tooltip**: Hover information
+
+#### Form System
+- **Form**: Complete form management
+- **FormField**: Field wrapper with validation
+- **FormItem**: Form element container
+- **FormLabel**: Accessible form labels
+- **FormControl**: Input control wrapper
+- **FormDescription**: Help text
+- **FormMessage**: Error messages
+
+### Component Features
+- **TypeScript Support**: Full type definitions
+- **Accessibility**: WCAG 2.1 AA compliant
+- **Responsive Design**: Mobile-first approach
+- **Customizable**: Tailwind CSS styling
+- **Consistent API**: Unified component patterns

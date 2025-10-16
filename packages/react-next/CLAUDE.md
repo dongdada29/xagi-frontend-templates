@@ -124,6 +124,17 @@ Claude, create an API service layer that:
 5. Follows RESTful conventions
 ```
 
+#### For Form Development
+```
+Claude, create a form using React Hook Form and Zod:
+
+1. Define Zod schema for validation
+2. Use Form components from src/components/ui/form.tsx
+3. Integrate with Radix UI input components
+4. Implement proper error handling
+5. Add submit handler with loading states
+```
+
 ### Project Structure for Claude
 
 ```
@@ -182,3 +193,115 @@ claude test src/components/Button.tsx
 3. **Styling Issues**: Confirm Tailwind CSS classes
 4. **Build Errors**: Run `pnpm clean` first
 5. **Test Failures**: Check test configuration
+
+## Form Component Generation Patterns
+
+### Form Schema Definition
+```typescript
+// Claude: Generate Zod schema for form validation
+import { z } from "zod"
+
+const formSchema = z.object({
+  // Define form fields with validation rules
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+  confirmPassword: z.string(),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords don't match",
+  path: ["confirmPassword"],
+})
+
+type FormData = z.infer<typeof formSchema>
+```
+
+### Form Component Implementation
+```typescript
+// Claude: Generate complete form component
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+
+export function UserForm() {
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  })
+
+  const onSubmit = (data: FormData) => {
+    console.log(data)
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder="Enter your email" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
+  )
+}
+```
+
+### Available Radix UI Components (27 Total)
+
+#### Layout & Navigation
+- **Accordion**: Collapsible content sections
+- **Collapsible**: Show/hide content areas
+- **Navigation Menu**: Complex navigation structures
+- **Menubar**: Application menu bars
+- **Tabs**: Tabbed content organization
+- **Separator**: Visual content dividers
+
+#### Data Display
+- **Avatar**: User profile images
+- **Card**: Content containers
+- **Progress**: Progress indicators
+- **Scroll Area**: Custom scrollable areas
+- **Aspect Ratio**: Maintain aspect ratios
+
+#### Form Controls
+- **Button**: Interactive buttons with variants
+- **Checkbox**: Boolean input controls
+- **Input**: Text input fields
+- **Label**: Form field labels
+- **Radio Group**: Single-choice selections
+- **Select**: Dropdown selections
+- **Slider**: Range input controls
+- **Switch**: Toggle controls
+- **Textarea**: Multi-line text input
+- **Toggle**: Toggle buttons
+- **Toggle Group**: Grouped toggle buttons
+
+#### Overlays & Dialogs
+- **Alert Dialog**: Confirmation dialogs
+- **Dialog**: Modal dialogs
+- **Dropdown Menu**: Context menus
+- **Popover**: Floating content panels
+- **Tooltip**: Hover information
+
+#### Form System
+- **Form**: Complete form management
+- **FormField**: Field wrapper with validation
+- **FormItem**: Form element container
+- **FormLabel**: Accessible form labels
+- **FormControl**: Input control wrapper
+- **FormDescription**: Help text
+- **FormMessage**: Error messages

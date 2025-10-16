@@ -7,6 +7,8 @@
 - ⚡️ 快速开发体验 (Vite 热重载)
 - 🔒 类型安全 (TypeScript)
 - 🎨 现代样式 (Tailwind CSS)
+- 🧩 完整 UI 组件库 (Radix UI - 27个组件)
+- 📝 表单管理 (React Hook Form + Zod)
 - 🌐 HTTP 客户端 (Axios)
 - 📦 完整的项目结构
 
@@ -120,3 +122,155 @@ const handleClick = (id: string) => {
 3. **状态管理**: 选择合适的状态管理方案
 4. **错误处理**: 添加适当的错误边界和错误处理
 5. **性能优化**: 定期检查和优化组件性能
+
+## Form 表单开发
+
+### React Hook Form + Zod 集成
+此模板包含完整的表单解决方案，使用 React Hook Form 进行状态管理，Zod 进行模式验证。
+
+#### Form 组件生成模式
+```typescript
+// Claude: 生成 Zod 模式进行表单验证
+import { z } from "zod"
+
+const formSchema = z.object({
+  // 定义表单字段和验证规则
+  email: z.string().email("无效的邮箱地址"),
+  password: z.string().min(8, "密码至少需要8个字符"),
+  confirmPassword: z.string(),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "密码不匹配",
+  path: ["confirmPassword"],
+})
+
+type FormData = z.infer<typeof formSchema>
+```
+
+#### Form 组件实现
+```typescript
+// Claude: 生成完整的表单组件
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+
+export function UserForm() {
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  })
+
+  const onSubmit = (data: FormData) => {
+    console.log(data)
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>邮箱</FormLabel>
+              <FormControl>
+                <Input placeholder="请输入邮箱" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">提交</Button>
+      </form>
+    </Form>
+  )
+}
+```
+
+### 可用的 Radix UI 组件 (27个)
+
+#### 布局和导航
+- **Accordion**: 可折叠的内容部分
+- **Collapsible**: 显示/隐藏内容区域
+- **Navigation Menu**: 复杂的导航结构
+- **Menubar**: 应用程序菜单栏
+- **Tabs**: 标签页内容组织
+- **Separator**: 视觉内容分隔符
+
+#### 数据显示
+- **Avatar**: 用户头像
+- **Card**: 内容容器
+- **Progress**: 进度指示器
+- **Scroll Area**: 自定义可滚动区域
+- **Aspect Ratio**: 保持宽高比
+
+#### 表单控件
+- **Button**: 交互式按钮，支持多种变体
+- **Checkbox**: 布尔输入控件
+- **Input**: 文本输入字段
+- **Label**: 表单字段标签
+- **Radio Group**: 单选选择
+- **Select**: 下拉选择
+- **Slider**: 范围输入控件
+- **Switch**: 切换控件
+- **Textarea**: 多行文本输入
+- **Toggle**: 切换按钮
+- **Toggle Group**: 分组切换按钮
+
+#### 覆盖层和对话框
+- **Alert Dialog**: 确认对话框
+- **Dialog**: 模态对话框
+- **Dropdown Menu**: 上下文菜单
+- **Popover**: 浮动内容面板
+- **Tooltip**: 悬停信息
+
+#### 表单系统
+- **Form**: 完整的表单管理
+- **FormField**: 带验证的字段包装器
+- **FormItem**: 表单元素容器
+- **FormLabel**: 可访问的表单标签
+- **FormControl**: 输入控件包装器
+- **FormDescription**: 帮助文本
+- **FormMessage**: 错误消息
+
+### 组件使用示例
+
+#### 按钮变体
+```typescript
+// Claude: 生成不同变体的按钮
+<Button variant="default">主要按钮</Button>
+<Button variant="outline">轮廓按钮</Button>
+<Button variant="ghost">幽灵按钮</Button>
+<Button variant="destructive">删除按钮</Button>
+```
+
+#### 表单集成
+```typescript
+// Claude: 生成包含多种输入类型的表单
+<FormField
+  control={form.control}
+  name="category"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>分类</FormLabel>
+      <Select onValueChange={field.onChange} defaultValue={field.value}>
+        <FormControl>
+          <SelectTrigger>
+            <SelectValue placeholder="选择一个分类" />
+          </SelectTrigger>
+        </FormControl>
+        <SelectContent>
+          <SelectItem value="option1">选项 1</SelectItem>
+          <SelectItem value="option2">选项 2</SelectItem>
+        </SelectContent>
+      </Select>
+      <FormMessage />
+    </FormItem>
+  )}
+/>
+```

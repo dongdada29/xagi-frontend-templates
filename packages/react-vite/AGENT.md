@@ -8,6 +8,8 @@
 - **构建工具**: Vite
 - **语言**: TypeScript
 - **样式**: Tailwind CSS
+- **UI组件**: Radix UI (27个组件)
+- **表单管理**: React Hook Form + Zod
 - **HTTP客户端**: Axios
 - **包管理**: pnpm (强制要求)
 
@@ -15,14 +17,14 @@
 ```
 src/
 ├── components/     # 组件目录
-│   └── ui/        # 基础UI组件
+│   └── ui/        # Radix UI 基础组件 (27个组件)
 ├── lib/           # 工具库和配置
 │   ├── api.ts     # HTTP客户端配置
 │   ├── services.ts # API接口定义
 │   └── utils.ts   # 工具函数
 ├── App.tsx        # 根组件
 ├── main.tsx       # 应用入口
-└── index.css      # 全局样式
+└── index.css      # 全局样式 (Tailwind CSS)
 ```
 
 ## 开发命令
@@ -96,3 +98,107 @@ chore: 构建过程或辅助工具的变动
 - 适当添加代码注释
 - 考虑性能和安全性
 - 保持代码风格一致
+
+## Form 表单开发
+
+### React Hook Form + Zod 集成
+此模板包含完整的表单解决方案，使用 React Hook Form 进行状态管理，Zod 进行模式验证。
+
+#### Form 组件
+- **Form**: 主表单包装器，提供 React Hook Form 上下文
+- **FormField**: 字段包装器，包含验证功能
+- **FormItem**: 表单元素容器
+- **FormLabel**: 可访问的表单标签
+- **FormControl**: 输入控件包装器
+- **FormDescription**: 表单字段的帮助文本
+- **FormMessage**: 错误消息显示
+
+#### Form 开发模式
+```typescript
+// 定义 Zod 模式
+const formSchema = z.object({
+  email: z.string().email("无效的邮箱地址"),
+  password: z.string().min(8, "密码至少需要8个字符"),
+})
+
+// 使用表单组件
+<Form {...form}>
+  <form onSubmit={form.handleSubmit(onSubmit)}>
+    <FormField
+      control={form.control}
+      name="email"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>邮箱</FormLabel>
+          <FormControl>
+            <Input {...field} />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  </form>
+</Form>
+```
+
+### Form 最佳实践
+- 使用 Zod 模式进行验证
+- 实现适当的错误处理
+- 与 Radix UI 组件集成
+- 遵循可访问性指南
+- 使用 TypeScript 确保类型安全
+
+## 可用组件
+
+### 完整的 Radix UI 组件库 (27个组件)
+
+#### 布局和导航
+- **Accordion**: 可折叠的内容部分
+- **Collapsible**: 显示/隐藏内容区域
+- **Navigation Menu**: 复杂的导航结构
+- **Menubar**: 应用程序菜单栏
+- **Tabs**: 标签页内容组织
+- **Separator**: 视觉内容分隔符
+
+#### 数据显示
+- **Avatar**: 用户头像
+- **Card**: 内容容器
+- **Progress**: 进度指示器
+- **Scroll Area**: 自定义可滚动区域
+- **Aspect Ratio**: 保持宽高比
+
+#### 表单控件
+- **Button**: 交互式按钮，支持多种变体
+- **Checkbox**: 布尔输入控件
+- **Input**: 文本输入字段
+- **Label**: 表单字段标签
+- **Radio Group**: 单选选择
+- **Select**: 下拉选择
+- **Slider**: 范围输入控件
+- **Switch**: 切换控件
+- **Textarea**: 多行文本输入
+- **Toggle**: 切换按钮
+- **Toggle Group**: 分组切换按钮
+
+#### 覆盖层和对话框
+- **Alert Dialog**: 确认对话框
+- **Dialog**: 模态对话框
+- **Dropdown Menu**: 上下文菜单
+- **Popover**: 浮动内容面板
+- **Tooltip**: 悬停信息
+
+#### 表单系统
+- **Form**: 完整的表单管理
+- **FormField**: 带验证的字段包装器
+- **FormItem**: 表单元素容器
+- **FormLabel**: 可访问的表单标签
+- **FormControl**: 输入控件包装器
+- **FormDescription**: 帮助文本
+- **FormMessage**: 错误消息
+
+### 组件特性
+- **TypeScript 支持**: 完整的类型定义
+- **可访问性**: 符合 WCAG 2.1 AA 标准
+- **响应式设计**: 移动优先方法
+- **可定制**: Tailwind CSS 样式
+- **一致的 API**: 统一的组件模式
