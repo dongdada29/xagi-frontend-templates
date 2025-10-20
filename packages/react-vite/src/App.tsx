@@ -1,45 +1,55 @@
-import { useState } from 'react'
-import './App.css'
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-
-
   return (
-    <>
-      <h1>React Vite Template</h1>
-      
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        
-        <div style={{ marginTop: '20px' }}>
-          <h3>计数器示例</h3>
+    <div className='app-container'>
+      {/* 主标题区域 */}
+      <div className='hero-section'>
+        <h1 className='main-title'>🚀 AI 智能开发助手</h1>
+        <p className='subtitle'>让 AI 帮您快速创建网页应用</p>
+      </div>
+
+      {/* 主要内容区域 */}
+      <div className='main-content'>
+        {/* 使用步骤 */}
+        <div className='steps-section'>
+          <div className='step-item'>
+            <div className='step-number'>1</div>
+            <div className='step-content'>
+              <h3>📝 说出想法</h3>
+              <p>在左下角对话框输入您的需求</p>
+            </div>
+          </div>
+          
+          <div className='step-item'>
+            <div className='step-number'>2</div>
+            <div className='step-content'>
+              <h3>🤖 AI 制作</h3>
+              <p>AI 自动制作网页功能</p>
+            </div>
+          </div>
+          
+          <div className='step-item'>
+            <div className='step-number'>3</div>
+            <div className='step-content'>
+              <h3>✨ 查看效果</h3>
+              <p>立即看到制作结果</p>
+            </div>
+          </div>
         </div>
-        
-        <p>
-          编辑 <code>src/App.tsx</code> 并保存以测试 HMR
-        </p>
+
+        {/* 示例提示 */}
+        <div className='examples-section'>
+          <h3>💬 试试这样说：</h3>
+          <div className='example-prompts'>
+            <span className='prompt-example'>"制作登录页面"</span>
+            <span className='prompt-example'>"添加商品列表"</span>
+            <span className='prompt-example'>"制作购物车"</span>
+          </div>
+        </div>
       </div>
-      
-      <div className="card" style={{ marginTop: '20px' }}>
-        <h3>功能特性</h3>
-        <ul>
-          <li>⚡️ 基于 Vite 的快速构建</li>
-          <li>⚛️ React 18 支持</li>
-          <li>📝 TypeScript 支持</li>
-          <li>🎨 热模块替换 (HMR)</li>
-          <li>📦 优化的生产构建</li>
-        </ul>
-      </div>
-      
-      <p className="read-the-docs">
-        点击 Vite 和 React 徽标了解更多信息
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
