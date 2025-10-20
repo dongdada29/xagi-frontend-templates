@@ -17,7 +17,12 @@
     "clean": "pnpm -r clean",
     "install:all": "pnpm install",
     "update:deps": "pnpm -r update:deps",
-    "check:outdated": "pnpm -r check:outdated"
+    "check:outdated": "pnpm -r check:outdated",
+    "pack:react-vite": "node scripts/pack-template.js react-vite",
+    "pack:react-next": "node scripts/pack-template.js react-next",
+    "pack:vue3-vite": "node scripts/pack-template.js vue3-vite",
+    "pack:all": "pnpm pack:react-vite && pnpm pack:react-next && pnpm pack:vue3-vite",
+    "pack:clean": "rm -rf zip/*.zip"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
