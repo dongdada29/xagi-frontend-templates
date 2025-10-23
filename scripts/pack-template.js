@@ -85,6 +85,7 @@ try {
     '*.log',
     '.DS_Store',
     'Thumbs.db',
+    'playground',
   ]
 
   if (fs.existsSync(gitignorePath)) {
