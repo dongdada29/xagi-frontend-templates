@@ -1,4 +1,10 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  AxiosError,
+  InternalAxiosRequestConfig,
+} from 'axios';
 
 interface ApiResponse<T = any> {
   code: number;
@@ -14,10 +20,10 @@ interface ApiError {
 class ApiClient {
   private instance: AxiosInstance;
 
-  constructor(baseURL: string = '/api') {
+  constructor(baseURL: string = '') {
     this.instance = axios.create({
       baseURL,
-      timeout: 10000,
+      timeout: 60000,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -29,15 +35,10 @@ class ApiClient {
   private setupInterceptors() {
     // 请求拦截器
     this.instance.interceptors.request.use(
-      (config) => {
-        // 可以在这里添加token等认证信息
-        const token = localStorage.getItem('token');
-        if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
-        }
+      (config: InternalAxiosRequestConfig) => {
         return config;
       },
-      (error) => {
+      (error: AxiosError<ApiError>) => {
         return Promise.reject(error);
       }
     );
@@ -46,13 +47,13 @@ class ApiClient {
     this.instance.interceptors.response.use(
       (response: AxiosResponse<ApiResponse>) => {
         const { code, data, message } = response.data;
-        
+
         // 处理业务错误
         if (code !== 200) {
           const error: ApiError = { code, message };
           return Promise.reject(error);
         }
-        
+
         return data;
       },
       (error: AxiosError<ApiError>) => {
@@ -67,7 +68,7 @@ class ApiClient {
           // 在设置请求时发生错误
           console.error('Request Error:', error.message);
         }
-        
+
         return Promise.reject(error);
       }
     );
@@ -77,11 +78,19 @@ class ApiClient {
     return this.instance.get(url, config);
   }
 
-  async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+  async post<T>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
     return this.instance.post(url, data, config);
   }
 
-  async put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+  async put<T>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
     return this.instance.put(url, data, config);
   }
 
@@ -89,7 +98,11 @@ class ApiClient {
     return this.instance.delete(url, config);
   }
 
-  async patch<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+  async patch<T>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
     return this.instance.patch(url, data, config);
   }
 }
@@ -102,11 +115,16 @@ export type { ApiResponse, ApiError };
 
 // 便捷方法
 export const api = {
-  get: <T>(url: string, config?: AxiosRequestConfig) => apiClient.get<T>(url, config),
-  post: <T>(url: string, data?: any, config?: AxiosRequestConfig) => apiClient.post<T>(url, data, config),
-  put: <T>(url: string, data?: any, config?: AxiosRequestConfig) => apiClient.put<T>(url, data, config),
-  delete: <T>(url: string, config?: AxiosRequestConfig) => apiClient.delete<T>(url, config),
-  patch: <T>(url: string, data?: any, config?: AxiosRequestConfig) => apiClient.patch<T>(url, data, config),
+  get: <T>(url: string, config?: AxiosRequestConfig) =>
+    apiClient.get<T>(url, config),
+  post: <T>(url: string, data?: any, config?: AxiosRequestConfig) =>
+    apiClient.post<T>(url, data, config),
+  put: <T>(url: string, data?: any, config?: AxiosRequestConfig) =>
+    apiClient.put<T>(url, data, config),
+  delete: <T>(url: string, config?: AxiosRequestConfig) =>
+    apiClient.delete<T>(url, config),
+  patch: <T>(url: string, data?: any, config?: AxiosRequestConfig) =>
+    apiClient.patch<T>(url, data, config),
 };
 
 export default ApiClient;
