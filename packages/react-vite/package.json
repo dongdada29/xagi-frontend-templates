@@ -1,6 +1,6 @@
 {
   "name": "@xagi-templates/react-vite",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React + Vite + TypeScript 模板 - 基于 Vite 的现代化 React 开发模板",
   "private": true,
   "type": "module",
