@@ -48,7 +48,6 @@ if (!template) {
 
 const templateDir = path.resolve(__dirname, '..', template.dir)
 const outputDir = path.resolve(__dirname, '..', 'zip')
-const outputFile = path.join(outputDir, `${template.outputName}.zip`)
 
 // 检查模板目录是否存在
 if (!fs.existsSync(templateDir)) {
@@ -61,7 +60,69 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true })
 }
 
+// 读取 package.json 获取版本号
+let version = null
+const packageJsonPath = path.join(templateDir, 'package.json')
+if (fs.existsSync(packageJsonPath)) {
+  try {
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'))
+    if (packageJson.version) {
+      version = packageJson.version
+    }
+  } catch (error) {
+    console.warn(`⚠️  读取 package.json 失败: ${error.message}`)
+  }
+}
+
+// 生成时间戳：YYYY_MM_DD_HH_MM_SS
+const now = new Date()
+const year = now.getFullYear()
+const month = String(now.getMonth() + 1).padStart(2, '0')
+const day = String(now.getDate()).padStart(2, '0')
+const hours = String(now.getHours()).padStart(2, '0')
+const minutes = String(now.getMinutes()).padStart(2, '0')
+const seconds = String(now.getSeconds()).padStart(2, '0')
+const timestamp = `${year}_${month}_${day}_${hours}_${minutes}_${seconds}`
+
+// 生成文件名：如果有版本号，格式为 name_version_timestamp.zip，否则为 name_timestamp.zip
+const fileName = version
+  ? `${template.outputName}_${version}_${timestamp}.zip`
+  : `${template.outputName}_${timestamp}.zip`
+const outputFile = path.join(outputDir, fileName)
+
+// 清除之前的包（匹配该模板的所有旧文件）
+console.log(`🧹 清除之前的包...`)
+try {
+  const files = fs.readdirSync(outputDir)
+  // 匹配该模板的所有旧文件（可能包含版本号，也可能不包含）
+  const oldFiles = files.filter(file => {
+    const baseName = file.replace(/\.zip$/, '')
+    // 匹配格式：templateName_* 或 templateName_version_*
+    return (
+      file.endsWith('.zip') &&
+      (baseName === template.outputName ||
+        baseName.startsWith(`${template.outputName}_`))
+    )
+  })
+
+  if (oldFiles.length > 0) {
+    oldFiles.forEach(file => {
+      const filePath = path.join(outputDir, file)
+      fs.unlinkSync(filePath)
+      console.log(`  ✓ 已删除: ${file}`)
+    })
+    console.log(`✅ 已清除 ${oldFiles.length} 个旧文件\n`)
+  } else {
+    console.log(`  ℹ️  没有找到旧文件\n`)
+  }
+} catch (error) {
+  console.warn(`⚠️  清除旧文件时出错: ${error.message}\n`)
+}
+
 console.log(`🚀 开始打包模板: ${template.name}`)
+if (version) {
+  console.log(`📌 版本号: ${version}`)
+}
 console.log(`📁 源目录: ${templateDir}`)
 console.log(`📦 输出文件: ${outputFile}`)
 
