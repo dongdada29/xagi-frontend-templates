@@ -1,6 +1,6 @@
 {
   "name": "@xagi-templates/vue3-vite",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue 3 + Vite + TypeScript 模板 - 基于 Vite 的现代化 Vue 3 开发模板",
   "private": true,
   "type": "module",

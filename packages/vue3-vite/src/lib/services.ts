@@ -10,16 +10,6 @@ export interface User {
   createdAt: string;
 }
 
-export interface LoginParams {
-  username: string;
-  password: string;
-}
-
-export interface LoginResult {
-  token: string;
-  user: User;
-}
-
 export interface ListParams {
   page: number;
   pageSize: number;
@@ -35,9 +25,6 @@ export interface ListResult<T> {
 
 // 用户相关API
 export const userApi = {
-  // 登录
-  login: (params: LoginParams) => api.post<LoginResult>('/auth/login', params),
-  
   // 获取用户信息
   getUserInfo: () => api.get<User>('/user/info'),
   
