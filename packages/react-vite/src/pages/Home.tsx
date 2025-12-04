@@ -1,14 +1,7 @@
-import { Card, CardContent } from '@/components/ui/card';
 import {
   MessageCircle,
   Cpu,
   Sparkles,
-  Lock,
-  Package,
-  ShoppingCart,
-  BarChart3,
-  User,
-  FileText,
 } from 'lucide-react';
 
 /**
@@ -16,14 +9,6 @@ import {
  * 展示应用页面开发助手的主要功能和使用说明
  */
 function Home() {
-  const examplePrompts = [
-    { text: '制作登录页面', icon: Lock },
-    { text: '添加商品列表', icon: Package },
-    { text: '制作购物车', icon: ShoppingCart },
-    { text: '创建仪表盘', icon: BarChart3 },
-    { text: '设计用户资料页', icon: User },
-    { text: '构建表单系统', icon: FileText },
-  ];
 
   const steps = [
     {
@@ -51,7 +36,7 @@ function Home() {
       <div className='flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8 flex flex-col items-center justify-center'>
         <div className='text-center mb-8'>
           <h1 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-3'>
-            应用页面开发助手
+            智能应用开发助手
           </h1>
           <p className='text-base sm:text-lg text-black mb-6'>
             让智能助手帮您快速创建网页应用，只需简单描述，即刻生成专业页面
