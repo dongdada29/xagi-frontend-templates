@@ -48,19 +48,19 @@ function Home() {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex flex-col'>
-      <div className='flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8'>
+      <div className='flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8 flex flex-col items-center justify-center'>
         <div className='text-center mb-8'>
-          <h1 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>
+          <h1 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-3'>
             应用页面开发助手
           </h1>
-          <p className='text-base sm:text-lg text-gray-600 mb-6'>
+          <p className='text-base sm:text-lg text-black mb-6'>
             让智能助手帮您快速创建网页应用，只需简单描述，即刻生成专业页面
           </p>
         </div>
 
         {/* 使用步骤 - 单行展示 */}
         <div className='mb-8'>
-          <h2 className='text-lg sm:text-xl font-bold text-gray-900 mb-4 text-center'>
+          <h2 className='text-lg sm:text-xl font-bold text-black mb-4 text-center'>
             简单三步开始
           </h2>
           <div className='flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-8'>
@@ -73,7 +73,7 @@ function Home() {
                   </div>
                   <div className='flex items-center gap-2'>
                     <IconComponent className='w-5 h-5 text-blue-600' />
-                    <h3 className='font-semibold text-gray-900 text-sm'>
+                    <h3 className='font-semibold text-black text-sm'>
                       {step.title}
                     </h3>
                   </div>
@@ -81,36 +81,6 @@ function Home() {
               );
             })}
           </div>
-        </div>
-
-        {/* 示例提示 */}
-        <div className='bg-white rounded-xl border border-gray-200 p-4 sm:p-6 shadow-sm'>
-          <h3 className='text-base sm:text-lg font-bold text-gray-900 mb-4 text-center'>
-            试试这样说
-          </h3>
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3'>
-            {examplePrompts.slice(0, 6).map((prompt, index) => {
-              const IconComponent = prompt.icon;
-              return (
-                <Card
-                  key={index}
-                  className='cursor-pointer border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200'
-                >
-                  <CardContent className='p-3'>
-                    <div className='flex items-center gap-2'>
-                      <IconComponent className='w-4 h-4 text-blue-600' />
-                      <span className='text-sm text-gray-700 truncate'>
-                        "{prompt.text}"
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-          <p className='text-xs text-gray-500 mt-4 text-center'>
-            示例仅供参考，可输入您自己的需求
-          </p>
         </div>
       </div>
 
