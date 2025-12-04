@@ -149,6 +149,14 @@ export const exampleApi = {
   createItem: (data: CreateData) => 
     api.post<Data>('/api/data', data),
 };
+
+// 1. 使用 useApi 获取数据 (自动处理 loading/error)
+const { data, loading, error } = useApi(() => exampleApi.getData(params));
+
+// 2. 使用 streamRequest 处理流式响应 (SSE)
+await streamRequest('/api/chat', { prompt: 'hello' }, (res) => {
+  console.log(res.data); // 实时接收数据
+});
 ```
 
 ### 表单开发

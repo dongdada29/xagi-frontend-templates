@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@microsoft/fetch-event-source": "2.0.1",
     "@radix-ui/react-accordion": "^1.2.8",
     "@radix-ui/react-alert-dialog": "^1.1.11",
     "@radix-ui/react-aspect-ratio": "^1.1.4",
@@ -66,6 +67,7 @@
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "@xagi/vite-plugin-design-mode": "^1.0.24",
     "autoprefixer": "^10.4.20",
     "eslint": "8",
     "eslint-plugin-react": "7",
@@ -76,8 +78,7 @@
     "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.2.2",
-    "vite": "^5.4.21",
-    "@xagi/vite-plugin-design-mode": "^1.0.24"
+    "vite": "^5.4.21"
   },
   "engines": {
     "node": ">=18.0.0"

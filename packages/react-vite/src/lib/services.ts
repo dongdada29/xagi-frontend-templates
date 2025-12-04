@@ -1,5 +1,6 @@
 // React Hook 封装示例
 import { useState, useEffect } from 'react';
+import { fetchEventSource, EventSourceMessage } from '@microsoft/fetch-event-source';
 
 /**
  * 通用 API 请求 Hook
@@ -45,6 +46,76 @@ export function useApi<T>(
   }, deps);
 
   return { data, loading, error, refetch: fetchData };
+}
+
+/**
+ * 流式响应数据结构
+ */
+export interface StreamResponse<T = any> {
+  /** 接口调用状态，success为true仅代表接口调用成功，业务执行逻辑请关注data中的数据定义 */
+  success: boolean;
+  /** 业务数据 */
+  data: T;
+  /** 接口调用失败时的错误信息，比如服务器内部错误 */
+  message: string;
+  /** 是否执行完成，没有特殊要求时只需要关注complete=true时的结果 */
+  complete: boolean;
+}
+
+
+
+/**
+ * 流式接口调用示例
+ * @param url 请求地址
+ * @param data 请求数据
+ * @param onData 接收到数据时的回调
+ * @param onError 发生错误时的回调
+ */
+export async function streamRequest<T>(
+  url: string,
+  data: any,
+  onData: (response: StreamResponse<T>) => void,
+  onError?: (error: Error) => void
+) {
+  try {
+    await fetchEventSource(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+      onmessage(msg: EventSourceMessage) {
+        if (msg.event === 'FatalError') {
+          throw new Error(msg.data);
+        }
+        try {
+          const parsed: StreamResponse<T> = JSON.parse(msg.data);
+          onData(parsed);
+          // If the stream is complete, we might want to stop listening.
+          // fetchEventSource will automatically close the connection if the server sends an 'end' event or closes the connection.
+          // If `parsed.complete` should explicitly stop the client-side processing,
+          // you might need to throw an error here to terminate the fetchEventSource,
+          // or rely on the server to close the connection.
+          // For now, we'll follow the provided example which doesn't explicitly stop on `parsed.complete` in onmessage.
+        } catch (e) {
+          console.warn('Failed to parse stream chunk:', msg.data);
+        }
+      },
+      onerror(err: any) {
+        if (onError) {
+          onError(err as Error);
+        } else {
+          console.error('Stream request failed:', err);
+        }
+        // 抛出错误以停止重试
+        throw err;
+      }
+    });
+  } catch (error) {
+    if (onError) {
+      onError(error as Error);
+    }
+  }
 }
 
 /*

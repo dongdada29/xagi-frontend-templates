@@ -73,6 +73,15 @@ export const exampleApi = {
   createItem: (data: CreateData) => 
     api.post<Data>('/api/data', data),
 };
+
+// 1. 常规数据获取
+const { data, loading, error } = useApi(() => exampleApi.getData(params));
+
+// 2. 流式数据请求 (SSE)
+await streamRequest('/api/stream', { prompt: '...' }, (res) => {
+  // res.data 是类型安全的
+  console.log(res.data);
+});
 ```
 
 ## Claude 提示词模板
