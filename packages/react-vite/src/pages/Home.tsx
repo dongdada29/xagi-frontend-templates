@@ -70,10 +70,15 @@ function Home() {
       </div>
 
       {/* 页脚 */}
-      <div className='text-center py-3 sm:py-4 px-4 border-t border-gray-200 bg-white/50 backdrop-blur-sm'>
-        <p className='text-xs sm:text-sm text-gray-600'>
-          智能页面开发助手 | 专为现代 Web 开发设计
-        </p>
+      <div className='py-3 sm:py-4 px-4 border-t border-gray-200 bg-white/50 backdrop-blur-sm'>
+        <div className='flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4'>
+          <p className='text-xs sm:text-sm text-gray-600'>
+            专为现代 Web 开发设计
+          </p>
+          <p className='text-xs sm:text-sm text-gray-600'>
+            这是个模板页面，请直接替换成符合用户需求的页面
+          </p>
+        </div>
       </div>
     </div>
   );
