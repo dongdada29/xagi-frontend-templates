@@ -77,7 +77,7 @@
     "tailwindcss": "^3.4.0",
     "typescript": "^5.2.2",
     "vite": "^5.4.21",
-    "@xagi/vite-plugin-design-mode": "^1.0.14"
+    "@xagi/vite-plugin-design-mode": "^1.0.24"
   },
   "engines": {
     "node": ">=18.0.0"
